@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eL Grandy - Boxing Programmer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --maroon: #800000;
+            --dark-maroon: #5a0000;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f8f9fa;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--black) 0%, var(--maroon) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        
+        .profile-card {
+            background-color: var(--white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            border: 2px solid var(--maroon);
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, var(--maroon), var(--dark-maroon));
+            height: 120px;
+            position: relative;
+            border-bottom: 5px solid var(--black);
+        }
+        
+        .avatar-container {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--white);
+            padding: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 4px solid var(--maroon);
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--maroon) 0%, var(--black) 100%);
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .coding-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            bottom: 5px;
+            right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            border: 2px solid var(--maroon);
+        }
+        
+        .coding-icon::before {
+            content: '</>';
+            color: var(--maroon);
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .card-body {
+            padding: 80px 30px 30px;
+            text-align: center;
+        }
+        
+        .name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .job-title {
+            color: var(--maroon);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .description {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .btn-follow {
+            background: linear-gradient(to right, var(--maroon), var(--dark-maroon));
+            border: none;
+            color: var(--white);
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(128, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+        
+        .btn-follow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 0, 0, 0.4);
+            background: linear-gradient(to right, var(--dark-maroon), var(--maroon));
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 25px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--maroon);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gray);
+            color: var(--maroon);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background: var(--maroon);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .badge {
+            background-color: var(--maroon);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+        
+        .fallback-text {
+            color: var(--white);
+            font-weight: bold;
+            text-align: center;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="card-header">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <!-- Foto profil dari folder lokal -->
+                    <img src="profile EL.png" alt="Profile Picture" class="profile-img" onerror="this.style.display='none'; document.getElementById('fallback').style.display='block';">
+                    <div id="fallback" class="fallback-text" style="display: none;">EL</div>
+                    <div class="coding-icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Nama -->
+            <h2 class="name">eL Grandy</h2>
+            
+            <!-- Job Title -->
+            <p class="job-title">UAD Students & Amateur Boxer <span class="badge">Sistem Informasi</span></p>
+            
+            <!-- Deskripsi -->
+            <p class="description">
+                Passionate about creating adrenaline and building the toughest body. Love boxing, but now learning to code with HTML, CSS, and JavaScript.
+            </p>
+            
+            <!-- Follow Button -->
+            <button class="btn btn-follow">
+                <i class="fas fa-plus me-2"></i>Follow
+            </button>
+            
+            <!-- Statistik -->
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">666</div>
+                    <div class="stat-label">Posts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">666</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">666</div>
+                    <div class="stat-label">Following</div>
+                </div>
+            </div>
+            
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://www.instagram.com/_l.dyyy" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/EL05EL" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
